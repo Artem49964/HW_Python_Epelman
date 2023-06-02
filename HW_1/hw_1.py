@@ -2,19 +2,32 @@
 # # #
 # # # 1)написати прогу яка вибирає зі введеної строки цифри і виводить їх через кому,
 # # # наприклад:
-# # st = 'as 23 fdfdg544' # введена строка
+st = 'as 23 fdfdg544'  # введена строка
+
 # # # # 2,3,5,4,4        #вивело в консолі.
-# #
+i = 0
+
+
+def nums_grabber(strin):
+    print(', '.join(i for i in strin if i.isdigit()))
+
+
+nums_grabber(st)
+
 # #
 # # # #################################################################################
 # # # 2)написати прогу яка вибирає зі введеної строки числа і виводить їх
 # # # так як вони написані
 # # # наприклад:
-# #
-# #
-# st = 'as 23 fdfdg544 34'
+st = 'as 23 fdfdg544 34'
+
+
 # # #   23, 544, 34              #вивело в консолі
-# #
+def nums_grabber_nature(strin):
+    print(', '.join(''.join(i if i.isdigit() else ' ' for i in st).split()))
+
+
+nums_grabber_nature(st)
 
 # #
 
@@ -52,6 +65,7 @@ lis_printer(l)
 
 #
 #
+
 # #
 # #
 # # - створити функцію яка приймає три числа та виводить та повертає найбільше.
@@ -91,11 +105,13 @@ def max_in_lis(lis):
     return max(lis)
 
 
-#
-#
-# #
-# #
 print(max_in_lis(l))
+
+
+#
+#
+# #
+# #
 
 
 #
@@ -168,83 +184,130 @@ print(set(list))
 def star(n):
     print('* ' * n)
     for i in range(n):
-        print('*'[:n], ('    *'[:]))
+        print('*   '[:n], ('     *'[:]))
     print('* ' * n)
 
 
 star(4)
+
+
 #
 # # # 3) вывести табличку множення за допомогою цикла while
+def table():
+    table_1 = 0
 
-table_1 = 0
+    while table_1 < 10:
+        table_1 += 1
+        print(table_1, end=' ')
+    print('\n')
 
-while table_1 < 10:
-    table_1 += 1
-    print(table_1, end=' ')
-print('\n')
+    table_2 = 0
 
-table_2 = 0
+    while table_2 < 20:
+        table_2 += 2
+        print(table_2, end=' ')
+    print('\n')
 
-while table_2 < 20:
-    table_2 += 2
-    print(table_2, end=' ')
-print('\n')
+    table_3 = 0
 
-table_3 = 0
+    while table_3 < 30:
+        table_3 += 3
+        print(table_3, end=' ')
+    print('\n')
 
-while table_3 < 30:
-    table_3 += 3
-    print(table_3, end=' ')
-print('\n')
+    table_4 = 0
 
-table_4 = 0
+    while table_4 < 40:
+        table_4 += 4
+        print(table_4, end=' ')
+    print('\n')
 
-while table_4 < 40:
-    table_4 += 4
-    print(table_4, end=' ')
-print('\n')
+    table_5 = 0
 
-table_5 = 0
+    while table_5 < 50:
+        table_5 += 5
+        print(table_5, end=' ')
+    print('\n')
 
-while table_5 < 50:
-    table_5 += 5
-    print(table_5, end=' ')
-print('\n')
+    table_6 = 0
 
-table_6 = 0
+    while table_6 < 60:
+        table_6 += 6
+        print(table_6, end=' ')
+    print('\n')
 
-while table_6 < 60:
-    table_6 += 6
-    print(table_6, end=' ')
-print('\n')
+    table_7 = 0
 
-table_7 = 0
+    while table_7 < 70:
+        table_7 += 7
+        print(table_7, end=' ')
+    print('\n')
 
-while table_7 < 70:
-    table_7 += 7
-    print(table_7, end=' ')
-print('\n')
+    table_8 = 0
 
-table_8 = 0
+    while table_8 < 80:
+        table_8 += 8
+        print(table_8, end=' ')
+    print('\n')
 
-while table_8 < 80:
-    table_8 += 8
-    print(table_8, end=' ')
-print('\n')
+    table_9 = 0
 
-table_9 = 0
+    while table_9 < 90:
+        table_9 += 9
+        print(table_9, end=' ')
+    print('\n')
 
-while table_9 < 90:
-    table_9 += 9
-    print(table_9, end=' ')
-print('\n')
+    table_10 = 0
 
-table_10 = 0
+    while table_10 < 100:
+        table_10 += 10
+        print(table_10, end=' ')
+    print('\n')
 
-while table_10 < 100:
-    table_10 += 10
-    print(table_10, end=' ')
-print('\n')
 
 #
 # # # 4) переробити це завдання під меню
+
+def choise():
+    print('1. створити функцію яка приймає три числа та виводить та повертає найбільше.')
+    print('2. створити функцію яка приймає будь-яку кількість чисел, повертає найменьше, а виводить найбільше.')
+    print('3. створити функцію яка повертає найбільше число з ліста.')
+    print('4. створити функцію яка приймає ліст чисел та складає значення елементів ліста та повертає його..')
+    print('5. створити функцію яка приймає ліст чисел та повертає середнє арифметичне його значень...')
+
+    print('Дан list:\n list = [22, 3, 5, 2, 8, 2, -23, 8, 23, 5]')
+    # list = [22, 3, 5, 2, 8, 2, -23, 8, 23, 5]
+
+    print('6. знайти мін число...')
+    print('7. видалити усі дублікати...')
+    print('8. замінити кожне 4-те значення на "X"...')
+    print('9. вивести на екран пустий квадрат з "*" сторона якого вказана як агрумент функції...')
+    print('10. вывести табличку множення за допомогою цикла while...')
+
+    choise = int(input('Оберіть функцію: '))
+    if choise == 1:
+        max_printer(1, 2, 3)
+    elif choise == 2:
+        polus_printer(3, 1, 6, 7, 8, 9, 6, -20)
+    elif choise == 3:
+        print(max_in_lis(l))
+    elif choise == 4:
+        print(sum_of_lis())
+    elif choise == 5:
+        average_of_lis(l)
+    elif choise == 6:
+        min_in_lis(l)
+    elif choise == 7:
+        print(set(list))
+    elif choise == 8:
+        pass
+    elif choise == 9:
+        star(6)
+    elif choise == 10:
+        table()
+
+    else:
+        print('Error')
+
+
+choise()
