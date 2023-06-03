@@ -51,9 +51,11 @@ def expanded_form(arg) -> str:
         elif arg >= 10000 and arg < 100000:
             return f'{str(arg)[0]}{"0" * 4} + {str(arg)[1]}{"0" * 3} + {str(arg)[2]}{"0" * 2} + {str(arg)[3]}{"0"} + {str(arg)[4]}'
         elif arg >= 100000 and arg < 1000000:
-            return f'{str(arg)[0]}{"0" * 5} + {str(arg)[1]}{"0" * 4} + {str(arg)[2]}{"0" * 3} + {str(arg)[3]}{"0"* 2} + {str(arg)[4]}{"0"} + {str(arg)[5]}'
+            return f'{str(arg)[0]}{"0" * 5} + {str(arg)[1]}{"0" * 4} + {str(arg)[2]}{"0" * 3} + {str(arg)[3]}{"0" * 2} + {str(arg)[4]}{"0"} + {str(arg)[5]}'
         elif arg >= 1000000 and arg < 10000000:
-            return f'{str(arg)[0]}{"0" * 6} + {str(arg)[1]}{"0" * 5} + {str(arg)[2]}{"0" * 4} + {str(arg)[3]}{"0"* 3} + {str(arg)[4]}{"0" * 2} + {str(arg)[5]}{"0"} + {str(arg)[6]}'
+            return f'{str(arg)[0]}{"0" * 6} + {str(arg)[1]}{"0" * 5} + {str(arg)[2]}{"0" * 4} + {str(arg)[3]}{"0" * 3} + {str(arg)[4]}{"0" * 2} + {str(arg)[5]}{"0"} + {str(arg)[6]}'
+
+
 # Функція працює з дефектом: Корректно розкладає число на розряди, якщо в числі немає цифри 0
 # питання: Як поставити перевірку - Якщо str(arg)[i] == 0: pass
 
@@ -66,9 +68,6 @@ print(expanded_form(233456))
 print(expanded_form(2234567))
 
 
-
-
-
 # expanded_form(12) # return '10 + 2'
 # expanded_form(42) # return '40 + 2'
 # expanded_form(70304) # return '70000 + 300 + 4'
@@ -79,23 +78,26 @@ print(expanded_form(2234567))
 
 def decor(func):
     counter = 0
+
     def inner(*args, **kwargs):
         nonlocal counter
         counter += 1
         func(*args, **kwargs)
         print(counter)
-    return  inner
+
+    return inner
+
 
 @decor
 def func1():
     print('func1')
 
+
 @decor
 def func2():
     print('func2')
 
-func1()
-func1()
 
+func1()
+func1()
 func2()
-
