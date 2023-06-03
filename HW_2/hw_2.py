@@ -76,3 +76,26 @@ print(expanded_form(2234567))
 #
 # 4) створити декоратор котрий буде підраховувати скільки разів була запущена функція продекорована цим
 # декоратором, та буде виводити це значення після виконання функцій
+
+def decor(func):
+    counter = 0
+    def inner(*args, **kwargs):
+        nonlocal counter
+        counter += 1
+        func(*args, **kwargs)
+        print(counter)
+    return  inner
+
+@decor
+def func1():
+    print('func1')
+
+@decor
+def func2():
+    print('func2')
+
+func1()
+func1()
+
+func2()
+
