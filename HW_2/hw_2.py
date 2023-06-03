@@ -1,21 +1,21 @@
 # 1)написати функцію на замикання котра буде в собі зберігати список справ,
 # вам потрібно реалізувати два методи:
-
-
-
-from typing import Callable, Any
-
 # - перший записує в список нову справу
+# - другий повертає всі записи
+from typing import Callable
+
+from typing import Any
+
+
 def notebook() -> Callable[[str], Any]:
     todo_list = []
 
     def add_todo(todo: str) -> None:
         nonlocal todo_list
         todo_list.append(todo)
-        if todo in todo_list:
+        if todo == False:
             print(f'"{todo}" is appended in list')
 
-# - другий повертає всі записи
     def get_all() -> list:
         nonlocal todo_list
         return todo_list
@@ -40,11 +40,6 @@ add_todo, get_all, delete_todo = notebook()
 # 3) створити функцію котра буде повертати сумму розрядів числа у вигляді строки (також використовуемо типізацію)
 #
 # Приклад:
-# expanded_form(12) # return '10 + 2'
-# expanded_form(42) # return '40 + 2'
-# expanded_form(70304) # return '70000 + 300 + 4'
-
-
 def expanded_form(arg) -> str:
     for i in range(arg):
         if arg < 100:
@@ -74,7 +69,9 @@ print(expanded_form(2234567))
 
 
 
-
+# expanded_form(12) # return '10 + 2'
+# expanded_form(42) # return '40 + 2'
+# expanded_form(70304) # return '70000 + 300 + 4'
 #
 #
 # 4) створити декоратор котрий буде підраховувати скільки разів була запущена функція продекорована цим
