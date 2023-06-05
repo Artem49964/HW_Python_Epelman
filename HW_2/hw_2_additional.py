@@ -3,7 +3,7 @@
 #  наприклад: x = 10 -> 1 1 2 3 5 8 13 21 34 55
 #  (число з послідовності - це сума попередніх двох чисел)
 
-def subsequence_fibonachi() -> None:
+def subsequence_fibonachi() -> list:
     f1 = 1
     f2 = 1
     # Перші 2 числа нам вже відомі, тому кількість ітерацій буде i - 2
@@ -15,6 +15,7 @@ def subsequence_fibonachi() -> None:
         f1, f2 = f2, f1 + f2
         print(f2, end=' ')
         num -= 1
+
 
 # subsequence_fibonachi()
 
@@ -33,7 +34,7 @@ def counter_even_odd_nums():
         odd_nums = [i for i in range(num) if i % 2 != 0]
         print(f'{odd_nums}')
     elif choise_even_odd == 2:
-        even_nums = [i for i in range(num) if i % 2 == 0]
+        even_nums = [i for i in range(num) if i % 2 == 0 and i != 0]
         print(f'{even_nums}')
 
 
@@ -62,15 +63,17 @@ st = 'as 23 fdfdg544'  # введена строка
 
 st = 'as 23 fdfdg544'  # введена строка
 
+
 def count_of_item(arg: list, item: str) -> str:
     for i in arg:
         return f'"{item}" -> {arg.count(item)}'
+
 
 # print(count_of_item(st, '4'))
 
 #######################################################################################################################################
 
-# 2.4 (В РОБОТІ)
+# 2.4
 # генерируем лист с непарных чисел в порядке возрастания [1,3,5,7,9.....n]
 # задача сделать c него лист листов такого плана:
 #
@@ -82,11 +85,44 @@ def count_of_item(arg: list, item: str) -> str:
 
 lis = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
 
-# В РОБОТІ
-# def num_list_generator(arg: list):
-#     for i in arg:
-#         main_list = []
-# print(num_list_generator(lis))
+
+def num_list_generator(arg: list) -> list:
+    # Треба створити головний ліст щоб поміщати туди окремі лісти
+    main_list = []
+    len_list = 0
+    # Будемо проходитись по всьому лісту(стрічці) - аргументу
+    for n, i in enumerate(arg):
+        #         Нам треба на кожній ітерації створювати ліст, додавати його в main_list
+        douther_list = []
+
+        main_list.append(douther_list)
+        douther_list.append(i)
+        # Далі нам потрібно збільшувати кількість ітеруємих додавань до douther_list
+
+    return main_list
+
+
+# _______________________________ писав сам
+
+def num_list_generator(arg: list) -> list:
+    main_list = []
+    douther_list = []
+    list_lenght = 1
+    for i in arg:
+
+        douther_list.append(i)
+        if len(douther_list) == list_lenght:
+            main_list.append(douther_list)
+            list_lenght += 1
+            douther_list = []
+
+    return main_list
+
+
+# ___________________писав з допомогою. Сам би таке не написав бо таку конструкцію для мене побудувати важко
+# Зрозумів так собі, на 60 зі 100...
+
+print(num_list_generator(lis))
 
 #######################################################################################################################################
 
@@ -97,5 +133,3 @@ lis = [1, 3, 5, 7, 9, 11, 13, 15, 17, 19]
 l = [1, 2, 3, 4, 2, 5, 1]
 s = list(set(l))
 # print(s)
-
-
