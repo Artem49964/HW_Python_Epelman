@@ -178,29 +178,33 @@ class Main(Printable):
 
     @classmethod
     def show_all_magazines(cls):
-        for i in cls.printable_list:
-            if isinstance(i, Magazine):
-                cls.printer(i.name)
+        for magazine in cls.printable_list:
+            if isinstance(magazine, Magazine):
+                cls.printer(magazine.name)
             else:
                 pass
 
 
     @classmethod
     def show_all_books(cls):
-        for i in cls.printable_list:
-            if isinstance(i, Book):
-                cls.printer(i.name)
+        for book in cls.printable_list:
+            if isinstance(book, Book):
+                cls.printer(book.name)
             else:
-                pass
+                print('No')
 
 
 
 
-Main.add(Magazine('Magazine1'))
+
+Main.add(Book('Playboy'))
+Main.add(Book('New York Times'))
 Main.show_all_magazines()
-Main.add(Book('Book1'))
-Main.show_all_books()
 
+
+Main.add(Book('Kobzar'))
+Main.add(Book('Eneida'))
+Main.show_all_books()
 
 # Приклад:
 #
