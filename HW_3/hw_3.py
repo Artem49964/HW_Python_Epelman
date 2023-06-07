@@ -8,6 +8,9 @@
 # #   >, < меньше більше
 # #   при виклику метода len() підраховувати сумму сторін
 
+from abc import ABC
+
+
 class Rectangle():
     def __init__(self, a, b):
         self.a = a
@@ -45,7 +48,7 @@ class Rectangle():
 # в класі попелюшки має бути count який буде зберігати кількість створених екземплярів классу
 # також має бути метод классу який буде виводити це значення
 
-from abc import ABC, abstractmethod
+
 
 
 class Human(ABC):
@@ -122,41 +125,86 @@ class Prince(Human):
 char = Prince('Charming', 20, 38)
 char.founding_shoe(cinderellas)
 
+
 ###############################################################################
 
 
 # 1) Створити абстрактний клас Printable який буде описувати абстрактний метод print()
-# 2) Створити класи Book та Magazine в кожного в конструкторі змінна name, та який наслідуются від класу Printable
-# 3) Створити клас Main в якому буде:
-# - змінна класу printable_list яка буде зберігати книжки та журнали
-# - метод add за допомогою якого можна додавати екземпляри класів в список і робити перевірку чи то що передають є класом Book або Magazine инакше ігрнорувати додавання
-# - метод show_all_magazines який буде виводити всі журнали викликаючи метод print абстрактного классу
-# - метод show_all_books який буде виводити всі книги викликаючи метод print абстрактного классу
 
-
-
-
-
-
-# 1) Створити абстрактний клас Printable який буде описувати абстрактний метод print()
-
-class Printable():
+class Printable(ABC):
     def __init__(self):
-
         pass
-    @abstractmethod
+
     def printer(*args, **kwargs) -> None:
         print(*args, **kwargs)
 
     def __str__(self):
         return str()
 
-a = Printable()
-a.printer('Hello', 'Vasya')
+
+# 2) Створити класи Book та Magazine в кожного в конструкторі змінна name, та який наслідуются від класу Printable
+
+class Book(Printable):
+    def __init__(self, name):
+        super().__init__()
+        self.name = name
+
+
+class Magazine(Printable):
+    def __init__(self, name):
+        super().__init__()
+        self.name = name
+
+
+# 3) Створити клас Main в якому буде:
+
+# - змінна класу printable_list яка буде зберігати книжки та журнали
+# - метод add за допомогою якого можна додавати екземпляри класів в список і робити перевірку чи то що передають є класом Book або Magazine инакше ігрнорувати додавання
+# - метод show_all_magazines який буде виводити всі журнали викликаючи метод print абстрактного классу
+# - метод show_all_books який буде виводити всі книги викликаючи метод print абстрактного классу
+
+class Main(Printable):
+    printable_list = []
+
+    def __init__(self):
+        super().__init__()
+
+    @classmethod
+    def add(cls, value):
+        if isinstance(value, Book) or isinstance(value, Magazine):
+            cls.printable_list.append(value)
+        else:
+            pass
+
+    @classmethod
+    def show_all_magazines(cls):
+        for i in cls.printable_list:
+            if isinstance(i, Magazine):
+                cls.printer(i.name)
+            else:
+                pass
+
+
+    @classmethod
+    def show_all_books(cls):
+        for i in cls.printable_list:
+            if isinstance(i, Book):
+                cls.printer(i.name)
+            else:
+                pass
+
+
+
+
+Main.add(Magazine('Magazine1'))
+Main.show_all_magazines()
+Main.add(Book('Book1'))
+Main.show_all_books()
+
 
 # Приклад:
 #
-# Main.add(Magazine('Magazine1'))
+
 # Main.add(Book('Book1'))
 # Main.add(Magazine('Magazine3'))
 # Main.add(Magazine('Magazine2'))
