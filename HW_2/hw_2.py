@@ -13,10 +13,10 @@ def notebook() -> Callable[[str], Any]:
     def add_todo(todo: str) -> None:
         nonlocal todo_list
         todo_list.append(todo)
-        if todo == False:
+        if todo in todo_list:
             print(f'"{todo}" is appended in list')
 
-    def get_all() -> list:
+    def get_all() -> list[str]:
         nonlocal todo_list
         return todo_list
 
@@ -56,23 +56,25 @@ def expanded_form(arg) -> str:
             return f'{str(arg)[0]}{"0" * 6} + {str(arg)[1]}{"0" * 5} + {str(arg)[2]}{"0" * 4} + {str(arg)[3]}{"0" * 3} + {str(arg)[4]}{"0" * 2} + {str(arg)[5]}{"0"} + {str(arg)[6]}'
 
 
+# print(expanded_form(123))
+# print(expanded_form(103))
+
+
+
+
+
 # Функція працює з дефектом: Корректно розкладає число на розряди, якщо в числі немає цифри 0
 # питання: Як поставити перевірку - Якщо str(arg)[i] == 0: pass
 
 
-print(expanded_form(22))
-print(expanded_form(233))
-print(expanded_form(2034))
-print(expanded_form(26345))
-print(expanded_form(233456))
-print(expanded_form(2234567))
+
 
 
 # expanded_form(12) # return '10 + 2'
 # expanded_form(42) # return '40 + 2'
 # expanded_form(70304) # return '70000 + 300 + 4'
-#
-#
+
+
 # 4) створити декоратор котрий буде підраховувати скільки разів була запущена функція продекорована цим
 # декоратором, та буде виводити це значення після виконання функцій
 
@@ -98,6 +100,6 @@ def func2():
     print('func2')
 
 
-func1()
-func1()
-func2()
+# func1()
+# func1()
+# func2()
