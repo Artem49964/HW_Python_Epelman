@@ -209,7 +209,7 @@ Main.show_all_books()
 # Приклад:
 #
 
-# Main.add(Book('Book1'))
+#  Main.add(Book('Book1'))
 # Main.add(Magazine('Magazine3'))
 # Main.add(Magazine('Magazine2'))
 # Main.add(Book('Book2'))
