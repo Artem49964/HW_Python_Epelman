@@ -49,9 +49,7 @@ class Rectangle():
 # також має бути метод классу який буде виводити це значення
 
 
-
-
-class Human(ABC):
+class Human():
 
     def __init__(self, name, age):
         self.__name = name
@@ -120,6 +118,7 @@ class Prince(Human):
         for i in cinderellas_list:
             if cls.found_shoe == i.leg_size:
                 print(f'{i.name}, {i.age}, {i.leg_size} is she!')
+                break
 
 
 char = Prince('Charming', 20, 38)
@@ -136,7 +135,7 @@ class Printable(ABC):
         pass
 
     def printer(*args, **kwargs) -> None:
-        print(*args, **kwargs)
+        pass
 
     def __str__(self):
         return str()
@@ -173,17 +172,15 @@ class Main(Printable):
     def add(cls, value):
         if isinstance(value, Book) or isinstance(value, Magazine):
             cls.printable_list.append(value)
-        else:
-            pass
 
     @classmethod
     def show_all_magazines(cls):
         for magazine in cls.printable_list:
             if isinstance(magazine, Magazine):
                 cls.printer(magazine.name)
-            else:
-                pass
 
+    def printer(*args, **kwargs) -> None:
+        print(*args, **kwargs)
 
     @classmethod
     def show_all_books(cls):
@@ -194,13 +191,9 @@ class Main(Printable):
                 print('No')
 
 
-
-
-
 Main.add(Book('Playboy'))
 Main.add(Book('New York Times'))
 Main.show_all_magazines()
-
 
 Main.add(Book('Kobzar'))
 Main.add(Book('Eneida'))
