@@ -61,17 +61,23 @@ def sorting_by_point_use(arg: list[Train]):
 
 # sorting_by_point_use(sorted_trains)
 
-def searching_train():
+def searching_train() -> Train:
     # for n, train in enumerate(trains):
     #     print(f'{n+1}. {train.point_use} - {train.point_departure}\n')
     # choise = int(input(f'Оберіть цифру сполучення зі списку вище: '))
 
-    point_use = str(input('Оберіть місто відправлення: '))
-    point_departure = str(input('Оберіть місто призначення: '))
+
+    point_departure = (input('Оберіть місто відправлення: '))
+    point_use = (input('Оберіть місто призначення: '))
+
+
 
     for train in trains:
-        if point_use == train.point_use and point_departure == train.point_departure:
+        if point_departure == train.point_departure and point_use == train.point_use:
             print(train)
+        else:
+            print('Просимо вибачення! Такого сполучення наразі немає')
+            break
 
 
 searching_train()
