@@ -21,6 +21,9 @@ class Train():
         self.time_departure = time_departure
         self.time_use = time_use
 
+
+
+
     def __str__(self):
         return f'\nСполучення: {self.point_departure} - {self.point_use}\nНомер потяга - {self.train_number}\nЧас відправлення - {self.time_departure}\nЧас прибуття - {self.time_use}\n'
 
@@ -38,20 +41,31 @@ sorted_trains = sorted(trains, key=lambda x: x.train_number)
 # for train in sorted_trains:
 #     print(train)
 
-choise_train = int(input('Введіть номер потяга, будь-ласка: '))
+def choosing_train():
+    choise_train = int(input('Введіть номер потяга, будь-ласка: '))
+    for train in sorted_trains:
+        if choise_train == train.train_number:
+            print(train)
 
-for train in sorted_trains:
-    if choise_train == train.train_number:
+
+def sorting_by_point_use(arg: list[Train]):
+    s = sorted(arg, key=lambda x: x.point_use[0])
+    for train in s:
+        if train.point_use == train.point_use:
+            s.sort(key=lambda x: x.point_use[0])
         print(train)
 
 
-def sorting_by_point_use(arg: list):
-    sorted(arg, key=lambda x: x.point_use[0])
-    sorted(arg, key=lambda y: y.time_use[0])
-
-
-
 print(sorting_by_point_use(sorted_trains))
+
+
+
+
+
+
+
+
+
 
 
 # 2)
