@@ -30,7 +30,7 @@ class Train():
 
 trains: list[Train] = [
     Train('Odessa', 'Kyiv', 20, '20.00', '08.00'),
-    Train('Lviv', 'Odessa', 38, '15.20', '09.20'),
+    Train('Chernihiv', 'Lviv', 38, '15.20', '09.20'),
     Train('Sumy', 'Lviv', 10, '00.20', '03.20'),
     Train('Izmail', 'Sevastopol', 2, '09.30', '20.30'),
     Train('Fastov', 'Kyiv', 87, '06.40', '10.30')
@@ -52,7 +52,7 @@ def sorting_by_point_use(arg: list[Train]):
     s = sorted(arg, key=lambda x: x.point_use[0])
     for train in s:
         if train.point_use == train.point_use:
-            s.sort(key=lambda x: x.point_use[0])
+            sorted(arg, key=lambda y: y.time_use)
         print(train)
 
 
