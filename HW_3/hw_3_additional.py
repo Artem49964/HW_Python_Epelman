@@ -31,8 +31,7 @@ trains: list[Train] = [
     Train('Sumy', 'Lviv', 10, '00.20', '03.20'),
     Train('Izmail', 'Sevastopol', 2, '09.30', '20.30'),
     Train('Fastov', 'Kyiv', 87, '06.40', '10.30')
-]#.sort(key=lambda x: x.train_number) - намагався відсортувати на місці
-
+]  # .sort(key=lambda x: x.train_number) - намагався відсортувати на місці
 
 sorted_trains = sorted(trains, key=lambda x: x.train_number)
 
@@ -46,18 +45,13 @@ for train in sorted_trains:
         print(train)
 
 
-
-def sorting_by_point_use(arg:list):
-    for i in trains:
-
-        sorted_trains = sorted(trains, key=lambda x: x.point_use[0])
-        sorted_trains_time_use = sorted(trains, key=lambda x: x.time_use[0])
+def sorting_by_point_use(arg: list):
+    sorted(arg, key=lambda x: x.point_use[0])
+    sorted(arg, key=lambda y: y.time_use[0])
 
 
 
-
-
-
+print(sorting_by_point_use(sorted_trains))
 
 
 # 2)
