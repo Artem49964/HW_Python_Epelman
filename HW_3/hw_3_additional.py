@@ -22,23 +22,26 @@ class Train():
         self.time_use = time_use
 
 
-
-
     def __str__(self):
         return f'\nСполучення: {self.point_departure} - {self.point_use}\nНомер потяга - {self.train_number}\nЧас відправлення - {self.time_departure}\nЧас прибуття - {self.time_use}\n'
 
 
 trains: list[Train] = [
-    Train('Odessa', 'Kyiv', 20, '20.00', '08.00'),
-    Train('Chernihiv', 'Lviv', 38, '15.20', '09.20'),
-    Train('Sumy', 'Lviv', 10, '00.20', '03.20'),
-    Train('Izmail', 'Sevastopol', 2, '09.30', '20.30'),
-    Train('Fastov', 'Kyiv', 87, '06.40', '10.30')
+    Train('Одеса', 'Київ', 20, '20.00', '08.00'),
+    Train('Чернігів', 'Львів', 38, '15.20', '09.20'),
+    Train('Суми', 'Львів', 10, '00.20', '03.20'),
+    Train('Ізмаїл', 'Севастополь', 2, '09.30', '20.30'),
+    Train('Фастів', 'Київ', 87, '06.40', '10.30')
 ]  # .sort(key=lambda x: x.train_number) - намагався відсортувати на місці
 
 sorted_trains = sorted(trains, key=lambda x: x.train_number)
 
-# for train in sorted_trains:
+
+IvanoFrankivsk_Uman = Train('Івано-Франківськ', 'Умань', 43, '09.30', '15.20')
+trains.append(IvanoFrankivsk_Uman)
+
+
+# for train in trains:
 #     print(train)
 
 def choosing_train():
@@ -52,12 +55,26 @@ def sorting_by_point_use(arg: list[Train]):
     s = sorted(arg, key=lambda x: x.point_use[0])
     for train in s:
         if train.point_use == train.point_use:
-            sorted(arg, key=lambda y: y.time_use)
+            sorted(arg, key=lambda y: y.time_departure)
         print(train)
 
 
-print(sorting_by_point_use(sorted_trains))
+# sorting_by_point_use(sorted_trains)
 
+def searching_train():
+    # for n, train in enumerate(trains):
+    #     print(f'{n+1}. {train.point_use} - {train.point_departure}\n')
+    # choise = int(input(f'Оберіть цифру сполучення зі списку вище: '))
+
+    point_use = str(input('Оберіть місто відправлення: '))
+    point_departure = str(input('Оберіть місто призначення: '))
+
+    for train in trains:
+        if point_use == train.point_use and point_departure == train.point_departure:
+            print(train)
+
+
+searching_train()
 
 
 
