@@ -75,9 +75,7 @@ def searching_train() -> Train:
     for train in trains:
         if point_departure == train.point_departure and point_use == train.point_use:
             print(train)
-        else:
-            print('Просимо вибачення! Такого сполучення наразі немає')
-            break
+
 
 
 searching_train()
