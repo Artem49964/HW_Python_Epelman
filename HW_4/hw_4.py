@@ -26,13 +26,7 @@ class Buy:
         self.price = price
 
 
-purches = [
-    Buy(1, 'milk', 18).__dict__,
-    Buy(2, 'tomato', 20).__dict__,
-    Buy(3, 'tea', 10).__dict__,
-    Buy(4, 'apple', 9.3).__dict__,
-    Buy(5, 'juice', 31).__dict__,
-]
+purches = []
 
 try:
     with open('purches.json', 'w') as buy:
@@ -44,97 +38,136 @@ except Exception as err:
 # з функціоналу:
 
 ####################################################
-#  * вивід всіх покупок +
+ # * вивід всіх покупок +
 
-# def purche_getter():
-#     try:
-#         with open('purches.json', 'r') as buy:
-#             all_purches = json.load(buy)
-#             print(all_purches)
-#     except Exception as err:
-#         print(err)
-
-
+def purche_getter():
+    try:
+        with open('purches.json', 'r+') as buy:
+            all_purches = json.load(buy)
+            for i in all_purches:
+                print(i)
+    except Exception as err:
+        print(err)
 # purche_getter()
 
 ####################################################
 
 #  * має бути змога додавати покупку в книгу +
 
-# def purche_setter(arg: dict[Buy]):
-#     try:
-#         with open('purches.json', 'w') as buy:
-#             new_buy = purches.append(arg.__dict__)
-#             json.dump(purches, buy)
-#     except Exception as err:
-#         print(err)
+def purche_setter(arg:[Buy]):
+    try:
+        with open('purches.json', 'w') as buy:
+            new_buy = purches.append(arg.__dict__)
+            json.dump(purches, buy)
+    except Exception as err:
+        print(err)
+#
+#
+
+purche_setter(Buy(1, 'juice', 31))
+purche_setter(Buy(2, 'apple', 9.3))
+purche_setter(Buy(3, 'tea', 10))
+purche_setter(Buy(4, 'tomato', 20))
+purche_setter(Buy(5, 'milk', 18))
+purche_setter(Buy(6, 'iphone', 100))
+purche_setter(Buy(7, 'dron', 23270))
 
 
-# purche_setter(Buy(6, 'iphone', 100))
-# purche_setter(Buy(7, 'dron', 23270))
 # purche_getter() # чудово
 
 ####################################################
+# * має бути змога шукати по будь якому полю покупку - (Дізнатись як та використати matcher pattern)
 
-# * має бути змога шукати по будь якому полю покупку -
+def purche_founder():
+    try:
+        with open('purches.json', 'r') as buy:
+            print('1. id\n2. name\n3. price')
+            lis = json.load(buy)
+            choose_field = int(input('По якому полю ви хотіли б шукати покупку? Оберіть цифру з варіантів вище: '))
+            if choose_field == 1:
+                choose_field_id = str(input('Оберіть порядковий номер покупки: '))
 
-# def purche_founder():
-#     try:
-#         with open('purches.json', 'r') as buy:
-#             print('1. id\n2. name\n3. price')
-#             lis = json.load(buy)
-#             choose_field = int(input('По якому полю ви хотіли б шукати покупку? Оберіть цифру з варіантів вище: '))
-#
-#             if choose_field == 1:
-#                 choose_field_id = str(input('Оберіть порядковий номер покупки: '))
-#
-#             elif choose_field == 2:
-#                 choose_field_name = str(input('Оберіть назву покупки: '))
-#
-#             elif choose_field == 3:
-#                 choose_field_price = str(input('Оберіть ціну покупки: '))
-#             for i in lis:
-#                 if choose_field_name in i['name']:
-#                     print(i)
-#
-#                 # if choose_field_id in i['name']:
-#                 #     print(i)
-#                 # if choose_field in str(i['id']):
-#
-#                 # else:
-#                 #     pass
-#
-#     except Exception as err:
-#         print(err)
+            elif choose_field == 2:
+                choose_field_name = str(input('Оберіть назву покупки: '))
 
+            elif choose_field == 3:
+                choose_field_price = str(input('Оберіть ціну покупки: '))
+            for i in lis:
+                print(i)
+                if choose_field_name == i['name3']:
+                    print(i)
+                if choose_field_id == i['id']:
+                    print(i)
+                if choose_field_price == i['price']:
+                    print(i)
+
+
+
+    except Exception as err:
+        print(err)
+#
 # purche_founder()
 
 
 ####################################################
-# * має бути змога показати найдорожчу покупку -
+# * має бути змога показати найдорожчу покупку +
 
-# def most_expensive_buy():
-#     try:
-#         with open('purches.json') as file:
-#             parsed_file = json.load(file)
-#             lis = list(parsed_file)
-#             lis.sort(key=lambda x:x['price'])
-#             print(lis[-1])
-#
-#     except Exception as err:
-#         print(err)
-#
-#
+def most_expensive_buy():
+    try:
+        with open('purches.json') as file:
+            parsed_file = json.load(file)
+            lis = list(parsed_file)
+            lis.sort(key=lambda x:x['price'])
+            print(lis[-1])
+
+    except Exception as err:
+        print(err)
+
+
 # most_expensive_buy()
 
 
-
 ####################################################
-# * має бути можливість видаляти покупку по id -
+# * має бути можливість видаляти покупку по id - (доробити)
 
+def id_deleter():
+    try:
+        with open('purches.json', 'r+') as file:
+            deleter_choiser = int(input('Выберите id, пo которому хотите удалить файл: '))
+            parsed_file = json.load(file)
+            for n, i in enumerate(parsed_file):
+                if deleter_choiser == i['id']:
+                    del parsed_file[n]
+            json.dump(parsed_file, file)
+
+
+    except Exception as err:
+        print(err)
+
+
+# id_deleter()
 
 ####################################################
 # (ну і меню на це все) -
+
+def menu():
+    print('1.Вивід всіх покупок\n2.Додати покупку в книгу\n3.Знайти покупку по полю\n4.Показати найдорожчу покупку\n5.Видалити покупку по id')
+
+    choise = int(input("Оберіть номер функції зі списку вище: "))
+
+    if choise == 1:
+        purche_getter()
+    elif choise == 2:
+        instance = input('Пропишіть екземпляр классу Buy: ')
+        purche_setter(instance)
+    elif choise == 3:
+        purche_founder()
+    elif choise == 4:
+        most_expensive_buy()
+    elif choise == 5:
+        id_deleter()
+
+menu()
 
 
 ########################################################################################################################
@@ -176,3 +209,13 @@ data = [
 #
 # з даним списком мае вийти ось такий результат:
 # res = [1110, 1120, 1130, 1111, 1122]
+
+
+
+
+
+
+
+
+
+
