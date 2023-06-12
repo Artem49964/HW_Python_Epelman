@@ -4,7 +4,7 @@
 import json
 
 try:
-    with open('emailes.txt', 'r') as email, open('gmails.txt', 'w') as gmail:
+    with open('emailes.txt', 'r+') as email, open('gmails.txt', 'w') as gmail:
         for i in email:
             if '@gmail.com' in i:
                 gmail.write(f'{str(i[35:-1])}\n')
@@ -13,8 +13,6 @@ except Exception as err:
 
 
 ########################################################################################################################
-
-
 # 2) Створити записну книжку покупок: +
 # - у покупки повинна бути id, назва і ціна
 # - всі покупки зберігаємо в файлі
@@ -27,12 +25,12 @@ class Buy:
 
 
 purches = []
-
-try:
-    with open('purches.json', 'w') as buy:
-        json.dump(purches, buy)
-except Exception as err:
-    print(err)
+#
+# try:
+#     with open('purches.json', 'w') as buy:
+#         json.dump(purches, buy)
+# except Exception as err:
+#     print(err)
 
 
 # з функціоналу:
@@ -42,12 +40,13 @@ except Exception as err:
 
 def purche_getter():
     try:
-        with open('purches.json', 'r+') as buy:
-            all_purches = json.load(buy)
-            for i in all_purches:
-                print(i)
+        with open('purches.json', 'r+') as file:
+            json.load(file)
+
+
     except Exception as err:
         print(err)
+
 # purche_getter()
 
 ####################################################
@@ -56,9 +55,12 @@ def purche_getter():
 
 def purche_setter(arg:[Buy]):
     try:
-        with open('purches.json', 'w') as buy:
-            new_buy = purches.append(arg.__dict__)
-            json.dump(purches, buy)
+        with open('purches.json', 'a') as file:
+            # buy_objects = json.dump(arg.__dict__, file)
+            json.dump(arg.__dict__, file)
+
+
+
     except Exception as err:
         print(err)
 #
@@ -73,7 +75,8 @@ purche_setter(Buy(6, 'iphone', 100))
 purche_setter(Buy(7, 'dron', 23270))
 
 
-# purche_getter() # чудово
+
+purche_getter()
 
 ####################################################
 # * має бути змога шукати по будь якому полю покупку - (Дізнатись як та використати matcher pattern)
@@ -92,14 +95,14 @@ def purche_founder():
 
             elif choose_field == 3:
                 choose_field_price = str(input('Оберіть ціну покупки: '))
-            for i in lis:
-                print(i)
-                if choose_field_name == i['name3']:
+            for n, i in enumerate(lis):
+                # print(i[n])
+                # if choose_field_id == i['id']:
+                #     print(i)
+                if choose_field_name == i['name']:
                     print(i)
-                if choose_field_id == i['id']:
-                    print(i)
-                if choose_field_price == i['price']:
-                    print(i)
+                # if choose_field_price == i['price']:
+                #     print(i)
 
 
 
@@ -167,7 +170,7 @@ def menu():
     elif choise == 5:
         id_deleter()
 
-menu()
+# menu()
 
 
 ########################################################################################################################
@@ -204,18 +207,21 @@ data = [
 ]
 
 # потрібно брати по черзі с кожного списку id і класти в список res, якщо таке значення вже є в результуючому списку то брати наступне з того ж підсписку
-#
+
 # в результат має записатись тільки 5 id
-#
+
 # з даним списком мае вийти ось такий результат:
 # res = [1110, 1120, 1130, 1111, 1122]
 
+res = []
+
+def gen():
+    for n, i in enumerate(data):
+        res.append(i[0]['id'])
+
+    print(res)
 
 
-
-
-
-
-
+# gen()
 
 
