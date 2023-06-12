@@ -55,20 +55,19 @@ def purche_getter():
 
 def purche_setter(arg:[Buy]):
     try:
-        with open('purches.json', 'a') as file:
+        with open('purches.json', 'w+') as file:
             # buy_objects = json.dump(arg.__dict__, file)
-            json.dump(arg.__dict__, file)
-
-
-
+            # new_buy = purches.append(arg.__dict__)
+            purches.append(arg.__dict__)
+            json.dump(purches, file)
     except Exception as err:
         print(err)
-#
-#
 
-purche_setter(Buy(1, 'juice', 31))
-purche_setter(Buy(2, 'apple', 9.3))
-purche_setter(Buy(3, 'tea', 10))
+
+
+purche_setter(Buy(1, 'bread', 11))
+purche_setter(Buy(2, 'juice', 8.5))
+purche_setter(Buy(3, 'bread', 10))
 purche_setter(Buy(4, 'tomato', 20))
 purche_setter(Buy(5, 'milk', 18))
 purche_setter(Buy(6, 'iphone', 100))
@@ -76,10 +75,10 @@ purche_setter(Buy(7, 'dron', 23270))
 
 
 
-purche_getter()
+# purche_getter()
 
 ####################################################
-# * має бути змога шукати по будь якому полю покупку - (Дізнатись як та використати matcher pattern)
+# * має бути змога шукати по будь якому полю покупку - (Дізнатись як та використати matcher pattern) (поки шукає тільки по полю name)
 
 def purche_founder():
     try:
@@ -109,8 +108,7 @@ def purche_founder():
     except Exception as err:
         print(err)
 #
-# purche_founder()
-
+purche_founder()
 
 ####################################################
 # * має бути змога показати найдорожчу покупку +
@@ -120,14 +118,14 @@ def most_expensive_buy():
         with open('purches.json') as file:
             parsed_file = json.load(file)
             lis = list(parsed_file)
-            lis.sort(key=lambda x:x['price'])
-            print(lis[-1])
+            lis.sort(key=lambda x:x['price'], reverse=True)
+            print(lis[0])
 
     except Exception as err:
         print(err)
 
 
-# most_expensive_buy()
+most_expensive_buy()
 
 
 ####################################################
@@ -141,7 +139,7 @@ def id_deleter():
             for n, i in enumerate(parsed_file):
                 if deleter_choiser == i['id']:
                     del parsed_file[n]
-            json.dump(parsed_file, file)
+
 
 
     except Exception as err:
